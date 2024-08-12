@@ -3,28 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperature Converter</title>
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="converter">
-        <h2>Temperature Converter</h2>
-        <label for="fromUnit">From:</label>
-        <select id="fromUnit">
-            <option value="Celcius">Celcius</option>
-            <option value="Fahrenheit">Fahrenheit</option>
-        </select>
-        <label for="toUnit">To:</label>
-        <select id="toUnit">
-            <option value="Celcius">Celcius</option>
-            <option value="Fahrenheit">Fahrenheit</option>
-        </select>
-        <label for="Temperature">Temperature:</label>
-        <input type="number" id="Temperature" placeholder="Enter Temperature For Conversion">
-        <button onclick="convert()">Convert</button>
-        <label for="result">Result:</label>
-        <input type="text" id="result" readonly>
+<body> 
+    <div class="calculator">
+        <div class="buttons">
+            <h2 id="value"></h2>
+            <span id="clear">Clear</span>
+            <span id="divide">/</span>
+            <span id="multiply">*</span>
+            <span id="7">7</span>
+            <span>8</span>
+            <span>9</span>
+            <span id="subtract">-</span>
+
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+
+            <span id="plus">+</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>0</span>
+            <span>00</span>
+            <span id="decimal">.</span>
+            <span id="equals">=</span>
+        </div>
     </div>
-    <script src="script.js"></script>
+    <script type="text/javascript">
+        let buttons = document.querySelector('.buttons');
+        let btn = document.querySelectorAll('span');
+        let value = document.getElementById('value');
+
+        for (let i = 0; i < btn.length; i++) {
+            btn[i].addEventListener('click', function() {
+                if (this.innerHTML === '=') {
+                    value.innerHTML = eval(value.innerHTML);
+                } else if (this.innerHTML === 'Clear') {
+                    value.innerHTML = "";
+                } else {
+                    value.innerHTML += this.innerHTML;
+                }
+                // Scale the text size to fit within the value display
+                if (value.innerHTML.length > 10) {
+                    value.style.fontSize = "1.5rem";
+                } else {
+                    value.style.fontSize = "2rem";
+                }
+            });
+        }
+    </script>
 </body>
 </html>
